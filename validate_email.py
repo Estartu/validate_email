@@ -134,6 +134,7 @@ def validate_email(email, check_mx=False, verify=False, debug=False, check_tls=F
             mx_hosts = get_mx_ip(hostname)
             if mx_hosts is None:
                 return False
+            mx_hosts.sort(key=lambda x: x[0])
             for mx in mx_hosts:
                 try:
                     if not verify and mx[1] in MX_CHECK_CACHE:
